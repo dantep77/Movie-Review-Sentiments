@@ -1,0 +1,3 @@
+aclImdb/
+__pycache__/
+cleaned_imdb_reviews.csv
