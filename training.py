@@ -7,8 +7,16 @@ import joblib
 
 df = pd.read_csv('cleaned_imdb_reviews.csv')
 
-
 def convertToFeaturesAndSplit():
+    '''
+    Creates and stores a TF-IDF vectorizer and transforms the review column of the dataframe into features.
+    Splits the dataframe into testing and training sets.
+
+    Output
+    -------
+    a list containing the following:
+    [x training set, x testing set, y training set, y testing set]
+    '''
     #Convert to TF-IDF features
     tfidf = TfidfVectorizer(encoding='utf-8', max_features=5000)
     x = tfidf.fit_transform(df['review'])
@@ -20,6 +28,18 @@ def convertToFeaturesAndSplit():
     return [x_train, x_test, y_train, y_test]
 
 def train(splits:list):
+    '''
+    Trains a logarithmic regression model based on given data splits
+
+    Input
+    ------
+    the output from covertToFeaturesAndSplit
+
+    Output
+    -------
+    Saves the trained model to the folder
+    Nothing is returned
+    '''
     logreg = LogisticRegression(max_iter=1000)
     logreg.fit(splits[0],splits[2])
     
@@ -30,8 +50,10 @@ def train(splits:list):
     joblib.dump(logreg,'Positive-Or-Negative-Log-Reg-Model.pkl')
 
 def main():
-    '''splits = convertToFeaturesAndSplit()
-    train(splits)'''
+    '''
+    splits = convertToFeaturesAndSplit()
+    train(splits)
+    '''
 
 
 if __name__ == '__main__': 
