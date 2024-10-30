@@ -5,7 +5,8 @@ from cleaning import preprocess_text
 model = joblib.load("Positive-Or-Negative-Log-Reg-Model.pkl") #load the model
 vectorizer = joblib.load("TFIDF-Vectorizer.pkl") #load the vectorizer
 
-phrase = st.text_area("Text Field",placeholder="Please enter your text here...",height=1) #text input area
+st.title("Movie Review Sentiment Predictor")
+phrase = st.text_area("Enter your review here",placeholder="Please enter your text here...",height=1) #text input area
 button = st.button("Analyze")
 
 if button:
