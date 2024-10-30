@@ -15,7 +15,9 @@ if button:
         transformed_text = vectorizer.transform([cleaned_phrase]) #Transforms the cleaned phrase into features
         prediction = model.predict(transformed_text)[0] #Predicts if the text is positive or negative
 
-        sentiment = "Positive" if prediction == 1 else "Negative"
-        st.write(f'This Review is : {sentiment}')
+        if prediction == 1:
+            st.success("This review is positive!")
+        elif prediction == 0:
+            st.error("This review is negative!")
     else:
-        st.write("Please input text into the field")
+            st.write("Please input text into the field")
